@@ -20,7 +20,6 @@ ENV HTTPD_HTDOCS $HTTPD_PREFIX/htdocs
 ENV HTTPD_CONF_DIR /usr/local/apache2/conf
 
 ADD resources/index.cgi $HTTPD_HTDOCS/
-ADD resources/.htaccess $HTTPD_HTDOCS/
 RUN rm -f $HTTPD_HTDOCS/index.html && \
   chgrp -R www-data $HTTPD_HTDOCS && \
   chmod +x $HTTPD_HTDOCS/index.cgi
@@ -42,5 +41,6 @@ EXPOSE 443
 
 VOLUME "/usr/local/apache2/conf/ssl"
 VOLUME "/syslog/remote/net/akamai/cis-akamai"
+
 # Start up apache
 #ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
